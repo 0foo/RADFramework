@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=Postgres1098!
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2.1
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/postgres
+      KC_DB_USERNAME: admin
+      KC_DB_PASSWORD: Postgres1098!
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+    command: start-dev
+    ports:
+      - "8181:8080"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  postgrest:
+    image: postgrest/postgrest
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    environment:
+      PGRST_DB_URI: postgres://admin:Postgres1098!@postgres:5432/postgres
+      PGRST_DB_ANON_ROLE: web_anon
+    restart: unless-stopped
+
+  debug:
+    image: ubuntu:latest
+    container_name: debug
+    command: >
+      bash -c "set -e &&
+               apt-get update > /dev/null &&
+               apt-get install -y curl wget dnsutils iputils-ping netcat-openbsd postgresql-client jq > /dev/null &&
+               tail -f /dev/null"
+volumes:
+  postgres_data:
+    driver: local
