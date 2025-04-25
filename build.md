@@ -3,6 +3,7 @@
 * docker
 * direnv: `sudo apt install direnv`
 * make
+* psql: `sudo apt install postgresql-client-common`
 
 #### Setup
 * fill out .envrc-template and copy over to .envrc
