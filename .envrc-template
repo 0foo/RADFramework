@@ -1,0 +1,8 @@
+# Set your database URL here
+export DB_URL=
+
+# Folder where migration files live
+export MIGRATIONS_DIR=./migrations
+
+# Folder for auth migrations
+export AUTH_MIGRATIONS_DIR=./migrations/auth
