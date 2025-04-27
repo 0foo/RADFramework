@@ -1,0 +1,4 @@
+post_id: existingid|table=posts
+user_id: existingid|table=users
+content: sentence
+created_at: timestamp

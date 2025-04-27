@@ -1,0 +1,3 @@
+post_id: existingid|table=posts
+user_id: existingid|table=users
+created_at: timestamp

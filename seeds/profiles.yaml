@@ -1,0 +1,4 @@
+user_id: existingid|table=users
+bio: sentence
+avatar_url: url
+location: city
