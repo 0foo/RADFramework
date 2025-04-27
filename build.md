@@ -1,12 +1,7 @@
 #### dependencies
-* golang/migrate: https://github.com/golang-migrate
+* golang
 * docker
-* direnv: `sudo apt install direnv`
-* make
-* psql: `sudo apt install postgresql-client-common`
 
 #### Setup
-* fill out .envrc-template and copy over to .envrc
-* enable direnv (run from this project root directory): `direnv allow .`
-
-
+* in infra directory: `docker compose up -d`
+    * setsup the database, the postgrest server, and a debug server
