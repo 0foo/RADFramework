@@ -1,1 +1,1 @@
-Rapid Application Development Projecg
+Rapid Application Development Framework
